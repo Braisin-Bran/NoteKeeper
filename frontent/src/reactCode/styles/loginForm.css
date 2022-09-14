@@ -1,0 +1,6 @@
+.loginWrapper{
+    
+    background: rgb(255,216,0);
+    background: linear-gradient(135deg, rgba(255,216,0,1) 0%, rgb(255, 195, 54) 100%);
+    box-shadow: 7px 5px 9px -5px rgba(0,0,0,0.58);
+}

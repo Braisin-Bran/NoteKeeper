@@ -1,0 +1,62 @@
+.newListMod{
+    background-color: #fefefe;
+    background-image: url('../../assets/paper.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position:fixed;
+    z-index:1;
+    top:-10%;
+    left:10%;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    box-shadow: 0px 2px 203px 200px rgba(0,0,0,0.77);
+    width: 80%; /* Could be more or less, depending on screen size */
+    height:60%;
+    overflow-y:scroll;
+}
+@media screen and (max-height:600px) {
+    .newListMod{
+        background-color: #fefefe;
+        background-image: url('../../assets/paper.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        position:fixed;
+        z-index:1;
+        top:-10%;
+        left:10%;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        box-shadow: 0px 2px 203px 200px rgba(0,0,0,0.77);
+        width: 80%; /* Could be more or less, depending on screen size */
+        height:50%;
+    }
+}
+
+.newListMod h2{
+    margin-bottom:0px;
+    padding-bottom:0px;
+
+}
+.newListMod h3{
+    margin-top:0px;
+    color:#888;
+}
+.newListMod input{
+    border-radius:5px;
+    border-color:#888;
+    border-style:solid;
+    height:30px;
+    width:fit-content;
+
+}
+.newListMod .descriptionInput{
+    width:200px;
+    height:100px;
+    vertical-align:text-top;
+    margin-bottom: 20%;
+}
+#closeButton{
+    margin-left:auto;
+}

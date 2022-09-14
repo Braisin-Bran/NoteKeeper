@@ -1,79 +1,64 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from "react";
 
+import styled from "styled-components";
+import "../styles/loginForm.css"
+import NavBar from "./Navbar";
+import LoginForm from "../components/LoginForm";
+import SignUpForm from "../components/SignUpForm";
 
+function Login({ onLogin, setCurrentAdmin }) {
+  
+  const [showLogin, setShowLogin] = useState(true);
 
-function Login({ setCurrentAdmin }){
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-
-    function HandleSubmit(e) {
-        e.preventDefault();
-        setIsLoading(true);
-        fetch("/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
-        }).then((r) => {
-          setIsLoading(false);
-          if (r.ok) {
-            r.json().then((admin) => setCurrentAdmin(admin));
-          } else {
-            r.json().then((err) => setErrors(err.errors));
-            //add stylization to this
-            // errorSpace = <Error key={errors}>{errors}</Error>
-            // console.log(errorSpace)
-            // errorSpace.forceUpdate()
-          }
-        });
-      }
-
-
-    return (
-        <form onSubmit={HandleSubmit}>
-            <h1>
-                Richmond Church
-            </h1>
-          <div className='username-input'>
-              <h2>
-                Username
-              </h2>
-              <input  
-                type="text"
-                id="username"
-                autoComplete="on"
-                value={username}
-                placeholder="username"
-                onChange={(e) => setUsername(e.target.value)}
-                />
-          </div>
-          <div className='password-input'>
-              <h2>
-                  password
-              </h2>
-              <input
-              type="text"
-              id="password"
-              autoComplete="off"
-              value={password}
-              placeholder="password"
-              onChange={(e) => setPassword(e.target.value)}      
-              />
-          </div>
-          <button className='login-button' type='submit'>
-              {isLoading ? "Loading..." : "Login"}
-          </button>
-            {/* <p>
+  return (
+    <div>
+      <Wrapper className="loginWrapper">
+        <Logo>Note Keeper</Logo>
+        {showLogin ? (
+          <>
+            <LoginForm onLogin={onLogin} setCurrentAdmin={setCurrentAdmin} />
+            <Divider />
+            <p>
+              Don't have an account? &nbsp;
+              <button color="secondary" onClick={() => setShowLogin(false)}>
+                Sign Up
+              </button>
+            </p>
+          </>
+        ) : (
+          <>
+            <SignUpForm onLogin={onLogin} />
+            <Divider />
+            <p>
               Already have an account? &nbsp;
               <button color="secondary" onClick={() => setShowLogin(true)}>
                 Log In
               </button>
-            </p> */}
-        </form>
-    )
+            </p>
+          </>
+        )}
+      </Wrapper>
+    </div>
+  );
 }
 
-export default Login
+    const Logo = styled.h1`
+      font-family: "Permanent Marker", cursive;
+      font-size: 3rem;
+      color: deeppink;
+      margin: 8px 0 16px;
+    `;
+
+    const Wrapper = styled.section`
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 16px;
+    `;
+
+    const Divider = styled.hr`
+      border: none;
+      border-bottom: 1px solid #ccc;
+      margin: 16px 0;
+    `;
+
+export default Login;

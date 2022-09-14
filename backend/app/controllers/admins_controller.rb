@@ -15,6 +15,13 @@ class AdminsController < ApplicationController
         end
     end
 
+    # POST '/sign up' 
+    def create
+        admin = Admin.create!(admin_params)
+        session[:admin_id] = admin.id
+        render json: admin, status: :created
+    end
+
     private
 
     # t.string :name

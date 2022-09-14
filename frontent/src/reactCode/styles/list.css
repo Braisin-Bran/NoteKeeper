@@ -1,0 +1,27 @@
+.listDiv {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    
+    margin:5px;
+    
+}
+.listCard{
+    background: rgb(255,216,0);
+    background: linear-gradient(135deg, rgba(255,216,0,1) 0%, rgb(255, 195, 54) 100%);
+    box-shadow: 7px 5px 9px -5px rgba(0,0,0,0.58);
+    margin:15px;
+    margin-bottom:30px;
+    height:fit-content
+}
+.listCard .delete_button{
+    margin-left:auto;
+}
+.mainTitle{
+    background: rgb(255,216,0);
+    background: linear-gradient(135deg, rgba(255,216,0,1) 0%, rgb(255, 195, 54) 100%);
+    box-shadow: 7px 5px 9px -5px rgba(0,0,0,0.58);
+    padding:5px;
+    width:fit-content;
+    margin-left:auto;
+    margin-right:auto;
+}

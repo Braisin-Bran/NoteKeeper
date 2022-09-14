@@ -11,8 +11,9 @@ class EventsController < ApplicationController
         render json: @event, serializer: EventDetailSerializer, status: :ok
     end
 
-    def create
-        event = current_admin.create_events.create!(events_params)
+    def create   
+        
+        event = Event.create!(event_params)
         render json: event, status: :created
     end
 
@@ -45,7 +46,7 @@ class EventsController < ApplicationController
     #   t.datetime :ends
 
     def event_params
-        params.permit(:title, :activity, :description, :starts, :ends)
+        params.permit(:title, :activity,:location, :description, :starts, :ends)
     end
 
 end

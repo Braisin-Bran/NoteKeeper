@@ -1,7 +1,7 @@
 class EventListSerializer < ActiveModel::Serializer
   attributes :id, :title, :eventType
   has_one :admin
-  has_one :event
+  has_many :event
 
   # t.string "title"
   #   t.string "eventType"

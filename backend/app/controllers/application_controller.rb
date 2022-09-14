@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies
     rescue_from ActiveRecord::RecordInvalid, with: :render_validation_errors
-    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+  # rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
     before_action :authenticate_admin
 
@@ -23,6 +23,7 @@ private
   def render_not_found(e)
     render json: { errors: e.message }, status: :not_found #404
   end
-
-      
+  def render_validation_errors(e)
+    render json: {errors:e.message}
+  end
 end

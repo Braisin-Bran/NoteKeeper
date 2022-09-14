@@ -5,11 +5,13 @@ class EventListsController < ApplicationController
     end
     
     def show
-        render json: EventList.find(params[:id]),  status: :ok
+        render json: EventList.where(admin_id: params[:admin_id]),  status: :ok
     end
 
     def create
-        group = EventList.create!(eventList_params)
+       
+        eventList = EventList.create!(eventList_params)
+        
         render json: eventList, status: :created # 201 status code
     end
 
@@ -32,6 +34,6 @@ class EventListsController < ApplicationController
     # t.belongs_to :event, null: false, foreign_key: true
 
     def eventList_params
-        params.permit(:title, :eventType)
+        params.permit(:title, :eventType, :event_id,:admin_id)
     end
 end

@@ -9,6 +9,7 @@
 puts "seeding Admin 🌱"
 
 ad1 = Admin.create!(name: "Charles", username: "CharlesDW", password: "F",  email: "CharlesDW@gmail.com")
+ad2 = Admin.create!(name: "Braylan", username: "Braisin", password: "Bran",  email: "braylan1005@gmail.com")
 # ad2 = Admin.create!(name: "Martha", username: "MarthaWithers", password: "321Admin", email: "MarthaWithers@gmail.com")
 
 puts "seeding Events 🌱"
@@ -27,7 +28,7 @@ e2 = Event.create!(title: "Community Gardening", activity: "Community Service", 
 e3 = Event.create!(title: "Community Jungle Gym Fundraiser", activity: "Community Service", description: "E", location: "Herndon", :starts => DateTime.strptime("2/14/2022","%m/%d/%Y"), :ends => DateTime.strptime("10/25/2022","%m/%d/%Y"))
 e4 = Event.create!(title: "Late Service", activity: "Regular Service", description: "E", location: "Main Room", :starts => DateTime.strptime("8/26/2022","%m/%d/%Y"), :ends => DateTime.strptime("8/26/2022","%m/%d/%Y"))
 e5 = Event.create!(title: "Weekend Potluck", activity: "Outside Service", description: "E", location: "Franklin Park", :starts => DateTime.strptime("9/16/2022","%m/%d/%Y"), :ends => DateTime.strptime("9/16/2022","%m/%d/%Y"))
-
+e6 = Event.create!(title: "Ballin'", activity:"Daily Activity", description:"simply ballin' as always", location:"Anywhere I go", :starts =>DateTime.strptime("10/05/2002","%m/%d/%Y"), :ends => DateTime.strptime("12/31/9999","%m/%d/%Y"))
 
 puts "seeding EventLists 🌱"
 
@@ -37,4 +38,5 @@ puts "seeding EventLists 🌱"
 # t.integer "event_id", null: false
 
 el1 = EventList.create!(title: "Prayers", eventType: "General Service", admin_id: ad1.id, event_id: e1.id)
-
+el2 = EventList.create!(title: "test", eventType:"testType", admin_id:ad1.id, event_id:e2.id)
+el3 = EventList.create!(title: "please work", eventType:"being hopeful", admin_id:ad2.id, event_id:e6.id)
