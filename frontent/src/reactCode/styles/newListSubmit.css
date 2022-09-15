@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Finger+Paint&family=Rampart+One&display=swap');
 .newListMod{
     background-color: #fefefe;
     background-image: url('../../assets/paper.jpg');
@@ -37,7 +38,7 @@
 .newListMod h2{
     margin-bottom:0px;
     padding-bottom:0px;
-
+    font-family: 'Finger Paint', cursive;
 }
 .newListMod h3{
     margin-top:0px;
@@ -55,7 +56,22 @@
     width:200px;
     height:100px;
     vertical-align:text-top;
-    margin-bottom: 20%;
+    margin-bottom: 10%;
+}
+.newListMod button{
+    padding:5px;
+    border-radius: 5px;
+    border: gainsboro 2px solid;
+    margin:5px;
+    font-family: 'Finger Paint', cursive;
+}
+.newListMod button:hover{
+    padding:5px;
+    border-radius: 5px;
+    border: rgb(255, 255, 255) 2px solid;
+    background:gray;
+    transition:0.5s;
+    margin:5px;
 }
 #closeButton{
     margin-left:auto;

@@ -1,5 +1,5 @@
 import '../styles/list.css'
-function ListCard({ list, handleDeleteList }) {
+function ListCard({ list, handleDeleteList, targetListTitle,setTargetListTitle,targetListDesc,setTargetListDesc,targetListType,setTargetListType, editVisibility, setEditVisibility, setTargetListID,setTargetEventID }) {
 
     const {id, title, eventType, admin_id, event_id,event } = list
 
@@ -17,24 +17,31 @@ function ListCard({ list, handleDeleteList }) {
 
 function handleDeleteClick() {
     const reqObj = {
-        method: "DELETE"
+        method: "DELETE",
+        credentials:'include'
     }
-    fetch(`http://localhost:9292/eventList/${id}`, reqObj )
+    fetch(`/eventList/${id}`, reqObj )
     .then((res) => res.json())
     .then(handleDeleteList(id))
+}
+function toggleEditVisibility(){
+setEditVisibility(false)
+setTargetListTitle(title)
+setTargetListType(eventType)
+setTargetListDesc(event.description)
+setTargetListID(id)
+setTargetEventID(event.id)
 }
 
     return(
     <div className="listCard">
-        <button className="delete_button" onClick={handleDeleteClick}>X</button>
+        
         <h1>{title}</h1>
-        <p><strong>Event Type: </strong>{eventType}</p>
-        <p>Title: {event.title}</p>
-        <p>Activity: {event.activity}</p>
-        <p>Description: {event.description}</p>
-        <p>Location: {event.location}</p>
-        <p>Start Time: {event.starts}</p>
-        <p>End Time: {event.ends}</p>
+        <h2><strong>Note Type: </strong>{eventType}</h2>
+       
+        
+        <p>{event.description}</p>
+        <button className="edit_button" onClick={toggleEditVisibility}>Edit</button><button className="delete_button" onClick={handleDeleteClick}>Delete</button>
         
     </div>
     )

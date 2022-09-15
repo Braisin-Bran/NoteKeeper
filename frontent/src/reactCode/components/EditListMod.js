@@ -1,47 +1,25 @@
 import { useState } from 'react'
 import "../styles/newListSubmit.css"
-function NewListMod({handleAddList ,handleAddEvent,submitVisibility,setSubmitVisibility, currentAdmin}){
-    const [ listTitle, setlistTitle ] = useState ("")
+function EditListMod({handleAddList ,setTargetListTitle,targetListTitle,setTargetListType,targetListType,setTargetListDesc,targetListDesc,targetListID, editVisibility,setEditVisibility, currentAdmin, targetEventID, updateLists}){    const [ listTitle, setlistTitle ] = useState ("")
     const [ eventType, setEventType ] = useState("")
     const [ noteDescription, setNoteDescription] = useState("")
     const [ eventID, setEventID] = useState("")
     let adminID = currentAdmin.id
-   //Event_lists schema
-    // t.string "title"
-    // t.string "eventType"
-    // t.integer "admin_id", null: false
-    // t.integer "event_id", null: false
-    // t.datetime "created_at", null: false
-    // t.datetime "updated_at", null: false
-    // t.index ["admin_id"], name: "index_event_lists_on_admin_id"
-    // t.index ["event_id"], name: "index_event_lists_on_event_id"
+    //setEventID(targetEventID)
 
-   //event schema
-    //t.string "title"
-    // t.string "activity"
-    // t.text "description"
-    // t.string "location"
-    // t.datetime "starts"
-    // t.datetime "ends"
-    // t.datetime "created_at", null: false
-    // t.datetime "updated_at", null: false
-    function handleEventCreation(data){
-        setEventID(data.id) 
-        // handleAddEvent()
-    }
-    function toggleSubmitVisibility(e){
+    function toggleEditVisibility(e){
      // e.preventDefault();
-        if(submitVisibility === true){
-          setSubmitVisibility(false)
+        if(editVisibility === true){
+          setEditVisibility(false)
         }else(
-          setSubmitVisibility(true)
+          setEditVisibility(true)
         )
          
         }
     function handleSubmit(e) {
         e.preventDefault();
-        fetch("/events", {
-            method: "POST",
+        fetch(`/events/${targetEventID}`, {
+            method: "PATCH",
             headers: {
               "Content-Type" : "application/json",
             },
@@ -55,8 +33,8 @@ function NewListMod({handleAddList ,handleAddEvent,submitVisibility,setSubmitVis
             })
           })
           .then((res)=> res.json())
-          .then((data)=>{fetch("/eventList", {
-            method: "POST",
+          .then((data)=>{fetch(`/eventList/${targetListID}`, {
+            method: "PATCH",
             headers: {
               "Content-Type" : "application/json",
             },
@@ -69,8 +47,8 @@ function NewListMod({handleAddList ,handleAddEvent,submitVisibility,setSubmitVis
             })
           })
           .then((res) => res.json())
-          .then((data) => handleAddList(data))
-          .then(toggleSubmitVisibility)
+          .then(updateLists)
+          .then(toggleEditVisibility)
         })
           
     
@@ -82,7 +60,7 @@ function NewListMod({handleAddList ,handleAddEvent,submitVisibility,setSubmitVis
        
       
         <form className='newListMod' onSubmit={handleSubmit} >
-            <h1>Create a New Note</h1>
+            <h1>Edit Note</h1>
             <ul>
                 <div>
                     <label> <h2>Note Title</h2>
@@ -91,8 +69,12 @@ function NewListMod({handleAddList ,handleAddEvent,submitVisibility,setSubmitVis
                             className="TitleInput" 
                             autoComplete='off'
                             id="title" 
-                            placeholder='Note Title' 
-                            onChange={(e) => setlistTitle(e.target.value)}/>
+                            placeholder={targetListTitle}
+                            value={targetListTitle}
+                            onChange={(e) => {
+                              setlistTitle(e.target.value)
+                              setTargetListTitle(e.target.value)
+                            }}/>
                     </label>
                 </div>
                 <div>
@@ -102,8 +84,12 @@ function NewListMod({handleAddList ,handleAddEvent,submitVisibility,setSubmitVis
                             className="TypeInput" 
                             id="NoteType" 
                             autoComplete='off'
-                            placeholder='Note Type' 
-                            onChange={(e) => setEventType(e.target.value)}/>
+                            placeholder={targetListType} 
+                            value={targetListType}
+                            onChange={(e) => {
+                              setEventType(e.target.value)
+                              setTargetListType(e.target.value)
+                              }}/>
                     </label>
                 </div>
                 <div>
@@ -114,17 +100,22 @@ function NewListMod({handleAddList ,handleAddEvent,submitVisibility,setSubmitVis
                             className="descriptionInput" 
                             id="NoteDescription" 
                             autoComplete='off'
-                            placeholder='Description' 
-                            onChange={(e) => setNoteDescription(e.target.value)}/>
+                           
+                            placeholder={targetListDesc} 
+                            value={targetListDesc}
+                            onChange={(e) => {
+                              setNoteDescription(e.target.value)
+                              setTargetListDesc(e.target.value)
+                            }}/>
                     </label>
                 </div>
                 {/* <input id="submitBtn"  type="submit"/> */}
                 <button id="submitBtn"  type="submit">Submit</button>
-                <button onClick={toggleSubmitVisibility} type="button">Cancel</button>
+                <button onClick={toggleEditVisibility} type="button">Cancel</button>
             </ul>
         </form>
        
     )
 
 }
-export default NewListMod
+export default EditListMod

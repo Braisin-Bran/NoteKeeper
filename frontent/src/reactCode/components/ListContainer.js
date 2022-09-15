@@ -1,7 +1,7 @@
 import react, { useState, useEffect } from 'react';
 import ListCard from './ListCard';
 import '../styles/list.css'
-function ListContainer({lists, currentAdmin,submitVisibility, handleDeleteList, setSubmitVisibility}){
+function ListContainer({lists, currentAdmin,submitVisibility, targetListTitle,setTargetListTitle,targetListDesc,setTargetListDesc,targetListType,setTargetListType, handleDeleteList, setSubmitVisibility, setEditVisibility,editVisibility, setTargetListID,targetEventID,setTargetEventID}){
     // let listMap = lists.map()
    
     function toggleSubmitVisibility(){
@@ -15,7 +15,23 @@ function ListContainer({lists, currentAdmin,submitVisibility, handleDeleteList, 
     }
    const {name} = currentAdmin
       const shownLists = lists.map((list, index)=>{
-         return(<ListCard key={index} handleDeleteList={handleDeleteList} list={list}/>
+         return(<ListCard 
+          key={index} 
+          handleDeleteList={handleDeleteList} 
+          list={list} 
+          targetListDesc={targetListDesc} 
+          setTargetListDesc={setTargetListDesc}  
+          targetListType={targetListType} 
+          setTargetListType={setTargetListType} 
+          targetListTitle={targetListTitle} 
+          setTargetListTitle={setTargetListTitle} 
+          editVisibility={editVisibility} 
+          setEditVisibility={setEditVisibility} 
+          setTargetListID={setTargetListID}
+          setTargetEventID={setTargetEventID}
+          targetEventID={targetEventID}
+          />
+          
          )
       }
       

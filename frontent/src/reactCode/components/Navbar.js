@@ -1,9 +1,21 @@
 import {useState} from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import "../styles/navBar.css"
 
-function NavBar({setCurrentMember}){
-
+function NavBar({currentAdmin, setCurrentAdmin }){
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    fetch(`/logout`, {
+      method: 'DELETE',
+      credentials: 'include'
+    })
+    .then(res => {
+      if (res.ok) {
+        setCurrentAdmin(null)
+        navigate('/', {replace:false})
+      }
+    })
+  }
   
     const [navbarOpen, setNavbarOpen] = useState(true)
 
@@ -41,12 +53,20 @@ function NavBar({setCurrentMember}){
     // }
   
     return (
-      <nav className="flex items-center justify-between text-2xl border-black border-b-2 pb-2 mb-4">
+      <nav className="">
+        
         <div className="navContainer">
-          <NavLink className="pr-6 py-6" to="/">Home</NavLink>
-          {/* <NavLink className="pr-2 py-6" to="/bulletins">Bulletin</NavLink> */}
-          <NavLink className="pr-2 py-6" to="/about">About</NavLink>
-          <NavLink className="pr-2 py-6" to="/login">Login</NavLink>
+          <NavLink className="navLogo" to="/">Note Keeper |</NavLink>
+          <NavLink  to="/">Home</NavLink>
+          <NavLink className="" to="/about">About</NavLink>
+          
+          {currentAdmin ?(<form onSubmit={handleLogout}>
+            
+            <button onClick={handleLogout}>Logout</button>
+
+        </form>):(<NavLink className="pr-2 py-6" to="/login">Login</NavLink>)
+          }
+          
         </div>
       </nav>
     )

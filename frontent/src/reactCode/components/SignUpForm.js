@@ -33,7 +33,7 @@ function SignUpForm( setCurrentAdmin ){
           if (res.ok) {
             res.json().then(member => {
               setCurrentAdmin(member)
-              navigate('/', {replace:false})
+              navigate('/login', {replace:false})
             })
           } else {
             res.json().then(({ error }) => {
@@ -52,6 +52,7 @@ function SignUpForm( setCurrentAdmin ){
                     <input
                     type="text"
                     name="name"
+                    autoComplete="off"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="name-input"
@@ -62,6 +63,7 @@ function SignUpForm( setCurrentAdmin ){
                     <input
                     type="text"
                     name="email"
+                    
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="email-input"
@@ -72,6 +74,7 @@ function SignUpForm( setCurrentAdmin ){
                     <input
                     type="text"
                     name="username"
+                    autoComplete="off"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     className="username-input"
@@ -82,6 +85,7 @@ function SignUpForm( setCurrentAdmin ){
                     <input
                     type="text"
                     name="password"
+                    autoComplete="off"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="password-input"
@@ -93,6 +97,7 @@ function SignUpForm( setCurrentAdmin ){
                     type="text"
                     name="password-confimation"
                     value={passwordConfirmation}
+                    autoComplete="off"
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     className="password-confimation-input"
                     placeholder="confirm password..."

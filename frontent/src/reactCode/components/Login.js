@@ -43,9 +43,9 @@ function Login({ onLogin, setCurrentAdmin }) {
 }
 
     const Logo = styled.h1`
-      font-family: "Permanent Marker", cursive;
+    font-family: 'Rampart One', cursive;
       font-size: 3rem;
-      color: deeppink;
+      color: black;
       margin: 8px 0 16px;
     `;
 
@@ -57,7 +57,7 @@ function Login({ onLogin, setCurrentAdmin }) {
 
     const Divider = styled.hr`
       border: none;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid black;
       margin: 16px 0;
     `;
 

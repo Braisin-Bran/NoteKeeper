@@ -1,13 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Finger+Paint&family=Rampart+One&display=swap');
 .App {
   text-align: center;
- 
+  font-family:  'Caveat', cursive;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+button{
+  padding:5px;
+  border-radius: 5px;
+  border: gainsboro 2px solid;
+  margin:5px;
+  font-family: 'Finger Paint', cursive;
+}
+button:hover{
+  padding:5px;
+  border-radius: 5px;
+  border: rgb(255, 255, 255) 2px solid;
+  background:gray;
+  transition:0.5s;
+  margin:5px;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

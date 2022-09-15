@@ -12,10 +12,16 @@
     margin:15px;
     margin-bottom:30px;
     height:fit-content
+    
 }
-.listCard .delete_button{
-    margin-left:auto;
+.listCard .edit_button:hover{
+   background-color: rgb(255, 247, 0);
+   border-color:black;
 }
+.listCard .delete_button:hover{
+    background-color: rgb(255, 0, 0);
+    border-color:orange;
+ }
 .mainTitle{
     background: rgb(255,216,0);
     background: linear-gradient(135deg, rgba(255,216,0,1) 0%, rgb(255, 195, 54) 100%);
@@ -24,4 +30,17 @@
     width:fit-content;
     margin-left:auto;
     margin-right:auto;
+}
+.listCard p{
+    font-size:larger;
+}
+.listCard h1{
+    margin-bottom:2px;
+    border-bottom: black double 5px;
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+}
+.listCard h2{
+    margin-top:0px;
 }

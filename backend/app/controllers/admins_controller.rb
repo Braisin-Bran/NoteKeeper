@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-    skip_before_action :authenticate_admin, only: [:show]
+    skip_before_action :authenticate_admin, only: [:show,:create]
 
     def index
         render json: Admin.all 
@@ -29,7 +29,7 @@ class AdminsController < ApplicationController
     # t.string :email
 
     def admin_params
-        params.permit(:username, :password, :password_confirmation)
+        params.permit(:name,:email,:username, :password, :password_confirmation)
     end
 
 end

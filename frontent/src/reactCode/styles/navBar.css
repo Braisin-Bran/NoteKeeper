@@ -1,6 +1,10 @@
 .navContainer{
     background-color: white;
-    
+    background-image: url("../../assets/steel.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+    border-bottom: black 2px solid;
+    padding:5px;
 }
 .navContainer a{
     text-decoration: none;
@@ -8,12 +12,25 @@
     color:black;
     padding:5px;
     margin:10px;
+    font-size:24px;
     transition:0.5s;
+    
+}
+.navContainer .navLogo{
+    text-align: left;
+    margin-left:0px;
+    font-family: 'Rampart One', cursive;
+}
+.navContainer .navLogo:hover{
+    color:black;
+    background-color:rgb(230,230,230);
 }
 .navContainer a:hover{
-    background-color: rgb(130, 95, 0);
-    color:tan;
+    background-color: rgb(200, 200, 200);
+    color:white;
     transition:cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+    border-radius: 5px;
+    
 }
 .navContainer button{
     float:right;

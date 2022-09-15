@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Navigate } from 'react-router-dom';
 
 import "../styles/loginForm.css"
 
@@ -21,6 +22,7 @@ function Login({ onLogin, setCurrentAdmin }){
           setIsLoading(false);
           if (r.ok) {
             r.json().then((admin) => setCurrentAdmin(admin));
+            Navigate('/',{replace:false})
           } else {
             r.json().then((err) => setErrors(err.errors));
             //add stylization to this
@@ -42,7 +44,7 @@ function Login({ onLogin, setCurrentAdmin }){
               <input  
                 type="text"
                 id="username"
-                autoComplete="on"
+                autoComplete="off"
                 value={username}
                 placeholder="username"
                 onChange={(e) => setUsername(e.target.value)}
