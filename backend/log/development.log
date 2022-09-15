@@ -15641,3 +15641,501 @@ Processing by EventListsController#create as */*
 Completed 201 Created in 13ms (Views: 1.1ms | ActiveRecord: 4.2ms | Allocations: 4565)
 
 
+Started GET "/me" for 127.0.0.1 at 2022-09-15 15:58:24 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AdminsController#show as */*
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/admins_controller.rb:10:in `show'
+[active_model_serializers] Rendered AdminSerializer with ActiveModelSerializers::Adapter::Attributes (0.31ms)
+Completed 200 OK in 20ms (Views: 4.9ms | ActiveRecord: 0.6ms | Allocations: 23623)
+
+
+Started GET "/eventList/2" for 127.0.0.1 at 2022-09-15 15:58:24 -0400
+Processing by EventListsController#show as */*
+  Parameters: {"admin_id"=>"2"}
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (1.2ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."admin_id" = ?[0m  [["admin_id", 2]]
+  ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 39], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (27.5ms)
+Completed 200 OK in 56ms (Views: 40.4ms | ActiveRecord: 3.1ms | Allocations: 48341)
+
+
+Started PATCH "/events/38" for 127.0.0.1 at 2022-09-15 16:22:09 -0400
+Processing by EventsController#update as */*
+  Parameters: {"title"=>"blank", "activity"=>"blank", "description"=>"Fix the edit feature not working on Note titles.", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"Fix the edit feature not working on Note titles.", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:33:in `set_event'
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:21:in `update'
+[31mUnpermitted parameters: :id, :event. Context: { controller: EventsController, action: update, request: #<ActionDispatch::Request:0x00007f72d4aa2780>, params: {"title"=>"blank", "activity"=>"blank", "description"=>"Fix the edit feature not working on Note titles.", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "controller"=>"events", "action"=>"update", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"Fix the edit feature not working on Note titles.", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/events_controller.rb:22:in `update'
+  [1m[36mEvent Update (1.8ms)[0m  [1m[33mUPDATE "events" SET "description" = ?, "updated_at" = ? WHERE "events"."id" = ?[0m  [["description", "Fix the edit feature not working on Note titles."], ["updated_at", "2022-09-15 20:22:09.414468"], ["id", 38]]
+  ↳ app/controllers/events_controller.rb:22:in `update'
+  [1m[36mTRANSACTION (6.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/events_controller.rb:22:in `update'
+[active_model_serializers] Rendered EventSerializer with ActiveModelSerializers::Adapter::Attributes (0.8ms)
+Completed 200 OK in 26ms (Views: 2.2ms | ActiveRecord: 9.0ms | Allocations: 4739)
+
+
+Started PATCH "/eventList/29" for 127.0.0.1 at 2022-09-15 16:22:09 -0400
+Processing by EventListsController#update as */*
+  Parameters: {"title"=>"", "eventType"=>"", "event_id"=>38, "admin_id"=>2, "id"=>"29", "event_list"=>{"title"=>"", "eventType"=>"", "admin_id"=>2, "event_id"=>38}}
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (0.2ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:19:in `update'
+[31mUnpermitted parameters: :id, :event_list. Context: { controller: EventListsController, action: update, request: #<ActionDispatch::Request:0x00007f72c46139e0>, params: {"title"=>"", "eventType"=>"", "event_id"=>38, "admin_id"=>2, "controller"=>"event_lists", "action"=>"update", "id"=>"29", "event_list"=>{"title"=>"", "eventType"=>"", "admin_id"=>2, "event_id"=>38}} }[0m
+  [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:20:in `update'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/event_lists_controller.rb:20:in `update'
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:20:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/event_lists_controller.rb:20:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 15ms (Views: 1.9ms | ActiveRecord: 0.8ms | Allocations: 9571)
+
+
+Started GET "/eventList/2" for 127.0.0.1 at 2022-09-15 16:22:10 -0400
+Processing by EventListsController#show as */*
+  Parameters: {"admin_id"=>"2"}
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (0.1ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."admin_id" = ?[0m  [["admin_id", 2]]
+  ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 39], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (10.25ms)
+Completed 200 OK in 14ms (Views: 12.0ms | ActiveRecord: 0.6ms | Allocations: 5910)
+
+
+Started PATCH "/events/38" for 127.0.0.1 at 2022-09-15 16:22:17 -0400
+Processing by EventsController#update as */*
+  Parameters: {"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:33:in `set_event'
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:21:in `update'
+[31mUnpermitted parameters: :id, :event. Context: { controller: EventsController, action: update, request: #<ActionDispatch::Request:0x00007f72d46b2c88>, params: {"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "controller"=>"events", "action"=>"update", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 2407)
+
+
+Started PATCH "/eventList/29" for 127.0.0.1 at 2022-09-15 16:22:18 -0400
+Processing by EventListsController#update as */*
+  Parameters: {"title"=>"Fix Edit feature", "eventType"=>"", "admin_id"=>2, "id"=>"29", "event_list"=>{"title"=>"Fix Edit feature", "eventType"=>"", "admin_id"=>2}}
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (0.1ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:19:in `update'
+[31mUnpermitted parameters: :id, :event_list. Context: { controller: EventListsController, action: update, request: #<ActionDispatch::Request:0x00007f72d4645598>, params: {"title"=>"Fix Edit feature", "eventType"=>"", "admin_id"=>2, "controller"=>"event_lists", "action"=>"update", "id"=>"29", "event_list"=>{"title"=>"Fix Edit feature", "eventType"=>"", "admin_id"=>2}} }[0m
+  [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:20:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/event_lists_controller.rb:20:in `update'
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:20:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/event_lists_controller.rb:20:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Completed 200 OK in 12ms (Views: 0.4ms | ActiveRecord: 0.5ms | Allocations: 4908)
+
+
+Started GET "/eventList/2" for 127.0.0.1 at 2022-09-15 16:22:18 -0400
+Processing by EventListsController#show as */*
+  Parameters: {"admin_id"=>"2"}
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (0.1ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."admin_id" = ?[0m  [["admin_id", 2]]
+  ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 39], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (7.12ms)
+Completed 200 OK in 11ms (Views: 8.9ms | ActiveRecord: 0.4ms | Allocations: 5874)
+
+
+Started PATCH "/events/38" for 127.0.0.1 at 2022-09-15 16:23:59 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#update as */*
+  Parameters: {"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:33:in `set_event'
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:21:in `update'
+[31mUnpermitted parameters: :id, :event. Context: { controller: EventsController, action: update, request: #<ActionDispatch::Request:0x00007f23dc9a8308>, params: {"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "controller"=>"events", "action"=>"update", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.18ms)
+Completed 200 OK in 30ms (Views: 3.3ms | ActiveRecord: 2.8ms | Allocations: 23916)
+
+
+Started PATCH "/eventList/29" for 127.0.0.1 at 2022-09-15 16:24:00 -0400
+Processing by EventListsController#update as */*
+  Parameters: {"title"=>"Fix Edit feature", "eventType"=>"", "admin_id"=>2, "id"=>"29", "event_list"=>{"title"=>"Fix Edit feature", "eventType"=>"", "admin_id"=>2}}
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (0.3ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ (pry):1:in `update'
+[31mUnpermitted parameters: :id, :event_list. Context: { controller: EventListsController, action: update, request: #<ActionDispatch::Request:0x000055ca1bd0e9a0>, params: {"title"=>"Fix Edit feature", "eventType"=>"", "admin_id"=>2, "controller"=>"event_lists", "action"=>"update", "id"=>"29", "event_list"=>{"title"=>"Fix Edit feature", "eventType"=>"", "admin_id"=>2}} }[0m
+  [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ (pry):2:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ (pry):2:in `update'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ (pry):2:in `update'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ (pry):2:in `update'
+Started GET "/me" for 127.0.0.1 at 2022-09-15 16:26:08 -0400
+Processing by AdminsController#show as */*
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/admins_controller.rb:10:in `show'
+[active_model_serializers] Rendered AdminSerializer with ActiveModelSerializers::Adapter::Attributes (0.9ms)
+Completed 200 OK in 12ms (Views: 7.0ms | ActiveRecord: 1.2ms | Allocations: 3137)
+
+
+Started GET "/eventList/2" for 127.0.0.1 at 2022-09-15 16:26:08 -0400
+Processing by EventListsController#show as */*
+  Parameters: {"admin_id"=>"2"}
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (0.2ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."admin_id" = ?[0m  [["admin_id", 2]]
+  ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 39], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (18.09ms)
+Completed 200 OK in 28ms (Views: 24.9ms | ActiveRecord: 0.8ms | Allocations: 9314)
+
+
+Started PATCH "/events/38" for 127.0.0.1 at 2022-09-15 16:26:14 -0400
+Processing by EventsController#update as */*
+  Parameters: {"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:33:in `set_event'
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:21:in `update'
+[31mUnpermitted parameters: :id, :event. Context: { controller: EventsController, action: update, request: #<ActionDispatch::Request:0x00007f23e092b6b0>, params: {"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "controller"=>"events", "action"=>"update", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 2344)
+
+
+Started PATCH "/eventList/29" for 127.0.0.1 at 2022-09-15 16:26:14 -0400
+Processing by EventListsController#update as */*
+  Parameters: {"title"=>"Fix Edit Feature", "eventType"=>"", "admin_id"=>2, "id"=>"29", "event_list"=>{"title"=>"Fix Edit Feature", "eventType"=>"", "admin_id"=>2}}
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+Started PATCH "/events/38" for 127.0.0.1 at 2022-09-15 16:32:32 -0400
+Processing by EventsController#update as */*
+  Parameters: {"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:33:in `set_event'
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:21:in `update'
+[31mUnpermitted parameters: :id, :event. Context: { controller: EventsController, action: update, request: #<ActionDispatch::Request:0x00007f23e0691508>, params: {"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "controller"=>"events", "action"=>"update", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 2502)
+
+
+Started PATCH "/eventList/29" for 127.0.0.1 at 2022-09-15 16:32:32 -0400
+Processing by EventListsController#update as */*
+  Parameters: {"title"=>"", "eventType"=>"Reminder", "admin_id"=>2, "id"=>"29", "event_list"=>{"title"=>"", "eventType"=>"Reminder", "admin_id"=>2}}
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+Started PATCH "/events/38" for 127.0.0.1 at 2022-09-15 16:32:40 -0400
+Processing by EventsController#update as */*
+  Parameters: {"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:33:in `set_event'
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:21:in `update'
+[31mUnpermitted parameters: :id, :event. Context: { controller: EventsController, action: update, request: #<ActionDispatch::Request:0x000055ca1c4d4298>, params: {"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "controller"=>"events", "action"=>"update", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 2500)
+
+
+Started PATCH "/eventList/29" for 127.0.0.1 at 2022-09-15 16:32:40 -0400
+Processing by EventListsController#update as */*
+  Parameters: {"title"=>"", "eventType"=>"Reminde", "admin_id"=>2, "id"=>"29", "event_list"=>{"title"=>"", "eventType"=>"Reminde", "admin_id"=>2}}
+  [1m[36mAdmin Load (0.3ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (0.1ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ (pry):4:in `update'
+[31mUnpermitted parameters: :id, :event_list. Context: { controller: EventListsController, action: update, request: #<ActionDispatch::Request:0x000055ca1c3f4878>, params: {"title"=>"", "eventType"=>"Reminde", "admin_id"=>2, "controller"=>"event_lists", "action"=>"update", "id"=>"29", "event_list"=>{"title"=>"", "eventType"=>"Reminde", "admin_id"=>2}} }[0m
+  [1m[36mCACHE Admin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ (pry):5:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ (pry):5:in `update'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ (pry):5:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ (pry):5:in `update'
+  [1m[36mEventList Load (0.2ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:20:in `update'
+[31mUnpermitted parameters: :id, :event_list. Context: { controller: EventListsController, action: update, request: #<ActionDispatch::Request:0x000055ca1c3f4878>, params: {"title"=>"", "eventType"=>"Reminde", "admin_id"=>2, "controller"=>"event_lists", "action"=>"update", "id"=>"29", "event_list"=>{"title"=>"", "eventType"=>"Reminde", "admin_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 354446ms (Views: 0.4ms | ActiveRecord: 1.2ms | Allocations: 27089)
+
+
+Started GET "/eventList/2" for 127.0.0.1 at 2022-09-15 16:38:35 -0400
+Processing by EventListsController#show as */*
+  Parameters: {"admin_id"=>"2"}
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (0.1ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."admin_id" = ?[0m  [["admin_id", 2]]
+  ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 39], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (10.29ms)
+Completed 200 OK in 15ms (Views: 12.5ms | ActiveRecord: 0.4ms | Allocations: 5905)
+
+
+Started PATCH "/events/38" for 127.0.0.1 at 2022-09-15 16:39:11 -0400
+Processing by EventsController#update as */*
+  Parameters: {"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:33:in `set_event'
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:21:in `update'
+[31mUnpermitted parameters: :id, :event. Context: { controller: EventsController, action: update, request: #<ActionDispatch::Request:0x00007f23e0e4e818>, params: {"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "controller"=>"events", "action"=>"update", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 5ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 2345)
+
+
+Started PATCH "/eventList/29" for 127.0.0.1 at 2022-09-15 16:39:12 -0400
+Processing by EventListsController#update as */*
+  Parameters: {"title"=>"Fix Edit", "eventType"=>"Remind", "admin_id"=>2, "id"=>"29", "event_list"=>{"title"=>"Fix Edit", "eventType"=>"Remind", "admin_id"=>2}}
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (0.1ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ (pry):7:in `update'
+[31mUnpermitted parameters: :id, :event_list. Context: { controller: EventListsController, action: update, request: #<ActionDispatch::Request:0x00007f23e0dbe2e0>, params: {"title"=>"Fix Edit", "eventType"=>"Remind", "admin_id"=>2, "controller"=>"event_lists", "action"=>"update", "id"=>"29", "event_list"=>{"title"=>"Fix Edit", "eventType"=>"Remind", "admin_id"=>2}} }[0m
+  [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ (pry):8:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ (pry):8:in `update'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ (pry):8:in `update'
+  [1m[36mEventList Update (0.2ms)[0m  [1m[33mUPDATE "event_lists" SET "eventType" = ?, "updated_at" = ? WHERE "event_lists"."id" = ?[0m  [["eventType", "Remind"], ["updated_at", "2022-09-15 20:39:28.774824"], ["id", 29]]
+  ↳ (pry):8:in `update'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ (pry):8:in `update'
+  [1m[36mEventList Load (0.1ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:20:in `update'
+[31mUnpermitted parameters: :id, :event_list. Context: { controller: EventListsController, action: update, request: #<ActionDispatch::Request:0x00007f23e0dbe2e0>, params: {"title"=>"Fix Edit", "eventType"=>"Remind", "admin_id"=>2, "controller"=>"event_lists", "action"=>"update", "id"=>"29", "event_list"=>{"title"=>"Fix Edit", "eventType"=>"Remind", "admin_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Class (0.14ms)
+Completed 200 OK in 35438ms (Views: 6.8ms | ActiveRecord: 4.5ms | Allocations: 25252)
+
+
+Started GET "/eventList/2" for 127.0.0.1 at 2022-09-15 16:39:48 -0400
+Processing by EventListsController#show as */*
+  Parameters: {"admin_id"=>"2"}
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (0.1ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."admin_id" = ?[0m  [["admin_id", 2]]
+  ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 39], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (7.96ms)
+Completed 200 OK in 11ms (Views: 9.5ms | ActiveRecord: 0.5ms | Allocations: 5865)
+
+
+  [1m[36mEventList Load (0.3ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:20:in `update'
+[31mUnpermitted parameters: :id, :event_list. Context: { controller: EventListsController, action: update, request: #<ActionDispatch::Request:0x00007f23e064d790>, params: {"title"=>"", "eventType"=>"Reminder", "admin_id"=>2, "controller"=>"event_lists", "action"=>"update", "id"=>"29", "event_list"=>{"title"=>"", "eventType"=>"Reminder", "admin_id"=>2}} }[0m
+  [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 200 OK in 445748ms (Views: 0.5ms | ActiveRecord: 0.6ms | Allocations: 90864)
+
+
+  [1m[36mEventList Load (0.2ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:20:in `update'
+[31mUnpermitted parameters: :id, :event_list. Context: { controller: EventListsController, action: update, request: #<ActionDispatch::Request:0x00007f23dc5b5660>, params: {"title"=>"Fix Edit Feature", "eventType"=>"", "admin_id"=>2, "controller"=>"event_lists", "action"=>"update", "id"=>"29", "event_list"=>{"title"=>"Fix Edit Feature", "eventType"=>"", "admin_id"=>2}} }[0m
+  [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Completed 200 OK in 831649ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 110307)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-09-15 16:42:56 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AdminsController#show as */*
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/admins_controller.rb:10:in `show'
+[active_model_serializers] Rendered AdminSerializer with ActiveModelSerializers::Adapter::Attributes (0.46ms)
+Completed 200 OK in 28ms (Views: 4.5ms | ActiveRecord: 0.9ms | Allocations: 23619)
+
+
+Started GET "/eventList/2" for 127.0.0.1 at 2022-09-15 16:42:56 -0400
+Processing by EventListsController#show as */*
+  Parameters: {"admin_id"=>"2"}
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (0.4ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."admin_id" = ?[0m  [["admin_id", 2]]
+  ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 39], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (43.47ms)
+Completed 200 OK in 88ms (Views: 76.7ms | ActiveRecord: 2.7ms | Allocations: 48335)
+
+
+Started PATCH "/events/38" for 127.0.0.1 at 2022-09-15 16:43:25 -0400
+Processing by EventsController#update as */*
+  Parameters: {"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:33:in `set_event'
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:21:in `update'
+[31mUnpermitted parameters: :id, :event. Context: { controller: EventsController, action: update, request: #<ActionDispatch::Request:0x00007fdb98c66968>, params: {"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z", "controller"=>"events", "action"=>"update", "id"=>"38", "event"=>{"title"=>"blank", "activity"=>"blank", "description"=>"", "location"=>"blank", "starts"=>"9999-10-10T04:00:00.000Z", "ends"=>"9999-10-10T04:00:00.000Z"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 200 OK in 7ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 6573)
+
+
+Started PATCH "/eventList/29" for 127.0.0.1 at 2022-09-15 16:43:25 -0400
+Processing by EventListsController#update as */*
+  Parameters: {"title"=>"Fix Edit", "eventType"=>"Reminder", "admin_id"=>2, "id"=>"29", "event_list"=>{"title"=>"Fix Edit", "eventType"=>"Reminder", "admin_id"=>2}}
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (0.2ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:20:in `update'
+[31mUnpermitted parameters: :id, :event_list. Context: { controller: EventListsController, action: update, request: #<ActionDispatch::Request:0x00007fdb98b74af0>, params: {"title"=>"Fix Edit", "eventType"=>"Reminder", "admin_id"=>2, "controller"=>"event_lists", "action"=>"update", "id"=>"29", "event_list"=>{"title"=>"Fix Edit", "eventType"=>"Reminder", "admin_id"=>2}} }[0m
+  [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mEventList Update (0.2ms)[0m  [1m[33mUPDATE "event_lists" SET "eventType" = ?, "updated_at" = ? WHERE "event_lists"."id" = ?[0m  [["eventType", "Reminder"], ["updated_at", "2022-09-15 20:43:25.404354"], ["id", 29]]
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (5.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/event_lists_controller.rb:21:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Class (0.15ms)
+Completed 200 OK in 19ms (Views: 2.0ms | ActiveRecord: 5.9ms | Allocations: 6546)
+
+
+Started GET "/eventList/2" for 127.0.0.1 at 2022-09-15 16:43:25 -0400
+Processing by EventListsController#show as */*
+  Parameters: {"admin_id"=>"2"}
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (0.1ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."admin_id" = ?[0m  [["admin_id", 2]]
+  ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 39], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (13.63ms)
+Completed 200 OK in 18ms (Views: 15.5ms | ActiveRecord: 0.5ms | Allocations: 5892)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-09-15 18:46:12 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AdminsController#show as */*
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/admins_controller.rb:10:in `show'
+[active_model_serializers] Rendered AdminSerializer with ActiveModelSerializers::Adapter::Attributes (0.31ms)
+Completed 200 OK in 21ms (Views: 3.6ms | ActiveRecord: 0.5ms | Allocations: 23617)
+
+
+Started GET "/eventList/2" for 127.0.0.1 at 2022-09-15 18:46:12 -0400
+Processing by EventListsController#show as */*
+  Parameters: {"admin_id"=>"2"}
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `current_admin'
+  [1m[36mEventList Load (0.2ms)[0m  [1m[34mSELECT "event_lists".* FROM "event_lists" WHERE "event_lists"."admin_id" = ?[0m  [["admin_id", 2]]
+  ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mCACHE Admin Load (0.0ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers]   [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 39], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/event_lists_controller.rb:8:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (49.38ms)
+Completed 200 OK in 80ms (Views: 67.7ms | ActiveRecord: 2.2ms | Allocations: 48321)
+
+
+Completed 500 Internal Server Error in 9032986ms (ActiveRecord: 2.0ms | Allocations: 210228)
+
+
+  
+Errno::EIO (Input/output error @ io_writev - <STDOUT>):
+  
+app/controllers/event_lists_controller.rb:19:in `update'

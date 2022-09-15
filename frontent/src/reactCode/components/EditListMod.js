@@ -18,6 +18,7 @@ function EditListMod({handleAddList ,setTargetListTitle,targetListTitle,setTarge
         }
     function handleSubmit(e) {
         e.preventDefault();
+        console.log("eventType: "+eventType)
         fetch(`/events/${targetEventID}`, {
             method: "PATCH",
             headers: {
@@ -39,8 +40,8 @@ function EditListMod({handleAddList ,setTargetListTitle,targetListTitle,setTarge
               "Content-Type" : "application/json",
             },
             body: JSON.stringify({
-              title: listTitle,
-              eventType: eventType,
+              title: targetListTitle,
+              eventType: targetListType,
               event_id: data.id,
               admin_id: adminID
   
@@ -87,8 +88,10 @@ function EditListMod({handleAddList ,setTargetListTitle,targetListTitle,setTarge
                             placeholder={targetListType} 
                             value={targetListType}
                             onChange={(e) => {
-                              setEventType(e.target.value)
                               setTargetListType(e.target.value)
+                              setEventType(e.target.value)
+                              
+                              
                               }}/>
                     </label>
                 </div>
